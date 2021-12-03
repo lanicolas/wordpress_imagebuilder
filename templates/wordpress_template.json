@@ -37,7 +37,7 @@
             {
                 "type": "File",
                 "name": "Script",
-                "sourceUri": "https://raw.githubusercontent.com/lanicolas/wordpress_imagebuilder/scripts/wordpress_install.sh",
+                "sourceUri": "https://raw.githubusercontent.com/lanicolas/wordpress_imagebuilder/main/scripts/wordpress_install.sh",
                 "destination": "/tmp/wordpress_install.sh"
             },
             {

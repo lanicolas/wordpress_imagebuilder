@@ -53,8 +53,17 @@ Edit the [script's](./scripts/image-builder-prerequisites.sh) environment variab
 
 Follow these steps to deploy the sample:
 
-```azurecli-interactive
-az group create --name basic-web-app --location eastus
+- Download the [image builder script](./scripts/image-builder.sh)
+- Sign in with Azure CLI
+
+```shell
+az login
+```
+
+- Run the [image builder script](./scripts/image-builder.sh)
+
+```shell
+. ./image-builder.sh
 ```
 
 ## Additional resources

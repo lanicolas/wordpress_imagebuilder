@@ -6,7 +6,7 @@ products:
 - image-builder
 - azure
 - azure-virtual-machines
-name: Create a Linux Azure Virtual Machine image using Azure Image Builder
+name: Install Wordpress on a Ubuntu Azure Virtual Machine image using Azure Image Builder
 author: lanicolas
 ---
 
@@ -29,7 +29,7 @@ The sample provides:
   - Image definition and gallery settings
 - A template used to configure the image, this file will:
   - Define the base image to use and VM profile, in this case it will use Ubuntu 18.04 on a Standard_D1_v2 VM.
-  - Include the customization script and the commands to run it. In this sample the script will
+  - Include the customization script and the commands to run it. In this sample the script will install LAMP stack and Wordpress
   - Image Gallery configuration
 
 ## Solution deployment variables

@@ -121,14 +121,16 @@ az sig image-definition create \
 ##             Template Configuration             ##
 ####################################################
 
-sed -i -e "s/<subscriptionID>/$subscriptionID/g" templates/wordpress_template.json
-sed -i -e "s/<rgName>/$sigResourceGroup/g" templates/wordpress_template.json
-sed -i -e "s/<imageDefName>/$imageDefName/g" templates/wordpress_template.json
-sed -i -e "s/<sharedImageGalName>/$sigName/g" templates/wordpress_template.json
-sed -i -e "s/<region1>/$location/g" templates/wordpress_template.json
-sed -i -e "s/<region2>/$additionalregion/g" templates/wordpress_template.json
-sed -i -e "s/<runOutputName>/$runOutputName/g" templates/wordpress_template.json
-sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" templates/wordpress_template.json
+curl https://raw.githubusercontent.com/lanicolas/wordpress_imagebuilder/main/templates/wordpress_template.json -o wordpress_template.json
+
+sed -i -e "s/<subscriptionID>/$subscriptionID/g" wordpress_template.json
+sed -i -e "s/<rgName>/$sigResourceGroup/g" wordpress_template.json
+sed -i -e "s/<imageDefName>/$imageDefName/g" wordpress_template.json
+sed -i -e "s/<sharedImageGalName>/$sigName/g" wordpress_template.json
+sed -i -e "s/<region1>/$location/g" wordpress_template.json
+sed -i -e "s/<region2>/$additionalregion/g" wordpress_template.json
+sed -i -e "s/<runOutputName>/$runOutputName/g" wordpress_template.json
+sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" wordpress_template.json
 
 az resource create \
     --resource-group $rg_name \

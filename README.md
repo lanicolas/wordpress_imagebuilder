@@ -7,7 +7,7 @@ products:
 - azure
 - azure-virtual-machines
 name: Create a Linux Azure Virtual Machine image using Azure Image Builder
-author: lanicolas, jmservera
+author: lanicolas
 ---
 
 # Create a Linux Azure Virtual Machine image using Azure Image Builder #
@@ -29,12 +29,12 @@ The sample provides:
   - Image definition and gallery settings
 - A template used to configure the image, this file will:
   - Define the base image to use and VM profile, in this case it will use Ubuntu 18.04 on a Standard_D1_v2 VM.
-  - Include the customization script and the commands to run it. In this sample the script will 
+  - Include the customization script and the commands to run it. In this sample the script will
   - Image Gallery configuration
 
 ## Solution deployment variables
 
-Edit the [script's](./scripts/image-builder-prerequisites.sh) environment variable section to match your deployment, provide inputs for the variables as follows: 
+Edit the [script's](./scripts/image-builder-prerequisites.sh) environment variable section to match your deployment, provide inputs for the variables as follows:
 
 | Variable | Description | Example |
 |---|---|---|

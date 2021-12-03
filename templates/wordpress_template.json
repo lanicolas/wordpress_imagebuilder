@@ -1,0 +1,68 @@
+{
+    "type": "Microsoft.VirtualMachineImages",
+    "apiVersion": "2020-02-14",
+    "location": "<region1>",
+    "dependsOn": [],
+    "tags": {
+        "imagebuilderTemplate": "AzureImageBuilderSIG",
+        "userIdentity": "enabled"
+            },
+        "identity": {
+            "type": "UserAssigned",
+                    "userAssignedIdentities": {
+                    "<imgBuilderId>": {}
+                        
+                }
+                },
+    
+    "properties": {
+
+        "buildTimeoutInMinutes" : 80,
+
+        "vmProfile": 
+            {
+            "vmSize": "Standard_D1_v2",
+            "osDiskSizeGB": 30
+            },
+        
+        "source": {
+            "type": "PlatformImage",
+                "publisher": "Canonical",
+                "offer": "UbuntuServer",
+                "sku": "18.04-LTS",
+                "version": "latest"
+            
+        },
+        "customize": [
+            {
+                "type": "File",
+                "name": "Script",
+                "sourceUri": "https://raw.githubusercontent.com/lanicolas/wordpress_imagebuilder/scripts/wordpress_install.sh",
+                "destination": "/tmp/wordpress_install.sh"
+            },
+            {
+                "type": "Shell",
+                "name": "install",
+                "inline": [
+                    "sudo sh install.sh"
+                ]
+            }
+        ],
+        "distribute": 
+        [
+            {   
+                "type": "SharedImage",
+                "galleryImageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/galleries/<sharedImageGalName>/images/<imageDefName>",
+                "runOutputName": "<runOutputName>",
+                "artifactTags": {
+                    "source": "azureVmImageBuilder",
+                    "baseosimg": "ubuntu1804"
+                },
+                "replicationRegions": [
+                  "<region1>",
+                  "<region2>"
+                ]
+            }
+        ]
+    }
+}

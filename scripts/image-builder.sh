@@ -123,18 +123,18 @@ az sig image-definition create \
 
 curl https://raw.githubusercontent.com/lanicolas/wordpress_imagebuilder/main/templates/wordpress_template.json -o wordpress_template.json
 
-sed -i -e "s/<subscriptionID>/$subscriptionID/g" wordpress_template.json
-sed -i -e "s/<rgName>/$sigResourceGroup/g" wordpress_template.json
-sed -i -e "s/<imageDefName>/$imageDefName/g" wordpress_template.json
-sed -i -e "s/<sharedImageGalName>/$sigName/g" wordpress_template.json
+sed -i -e "s/<subscriptionID>/$subscription_id/g" wordpress_template.json
+sed -i -e "s/<rgName>/$rg_name/g" wordpress_template.json
+sed -i -e "s/<imageDefName>/$image_def_name/g" wordpress_template.json
+sed -i -e "s/<sharedImageGalName>/$image_gallery/g" wordpress_template.json
 sed -i -e "s/<region1>/$location/g" wordpress_template.json
-sed -i -e "s/<region2>/$additionalregion/g" wordpress_template.json
-sed -i -e "s/<runOutputName>/$runOutputName/g" wordpress_template.json
-sed -i -e "s%<imgBuilderId>%$imgBuilderId%g" wordpress_template.json
+sed -i -e "s/<region2>/$replicated_location/g" wordpress_template.json
+sed -i -e "s/<runOutputName>/$image_metadata/g" wordpress_template.json
+sed -i -e "s%<imgBuilderId>%$identity_uri%g" wordpress_template.json
 
 az resource create \
     --resource-group $rg_name \
-    --properties @templates/wordpress_template.json \
+    --properties @wordpress_template.json \
     --is-full-object \
     --resource-type Microsoft.VirtualMachineImages/imageTemplates \
     -n wordpressimage

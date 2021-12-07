@@ -34,7 +34,7 @@ The sample provides:
 
 ## Solution deployment variables
 
-Edit the [script's](./scripts/image-builder-prerequisites.sh) environment variable section to match your deployment, provide inputs for the variables as follows:
+Download the [image builder script](./scripts/image-builder.sh) and edit the environment variable section to match your deployment, provide inputs for the variables as follows:
 
 | Variable | Description | Example |
 |---|---|---|
@@ -53,7 +53,6 @@ Edit the [script's](./scripts/image-builder-prerequisites.sh) environment variab
 
 Follow these steps to deploy the sample:
 
-- Download the [image builder script](./scripts/image-builder.sh)
 - Sign in with Azure CLI
 
 ```shell
@@ -64,6 +63,28 @@ az login
 
 ```shell
 . ./image-builder.sh
+```
+
+- After the script has finished its run, test the image by creating a VM.
+
+```shell
+az network nsg create -g $rg_name -n wordpressnsg
+az network nsg rule create \
+  --resource-group $rg_name \
+  --nsg-name wordpressnsg \
+  --name allow-http \
+  --protocol tcp \
+  --priority 100 \
+  --destination-port-range 80 \
+  --access Allow
+az vm create \
+  --resource-group $rg_name \
+  --name wordpressvm \
+  --admin-username aibuser \
+  --location $location \
+  --image "/subscriptions/$subscription_id/resourceGroups/$rg_name/providers/Microsoft.Compute/galleries/$image_gallery/images/$image_def_name/versions/latest" \
+  --generate-ssh-keys \
+  --nsg wordpressnsg
 ```
 
 ## Additional resources

@@ -44,7 +44,7 @@
                 "type": "Shell",
                 "name": "install",
                 "inline": [
-                    "sudo sh install.sh"
+                    "sudo sh /tmp/wordpress_install.sh"
                 ]
             }
         ],

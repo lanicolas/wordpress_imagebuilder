@@ -6,11 +6,11 @@ products:
 - image-builder
 - azure
 - azure-virtual-machines
-name: Install Wordpress on a Ubuntu Azure Virtual Machine image using Azure Image Builder
+name: Create a Wordpress image for an Azure Virtual Machine image using Azure Image Builder
 author: lanicolas
 ---
 
-# Create a Linux Azure Virtual Machine image using Azure Image Builder #
+# Create a Wordpress image for an Azure Virtual Machine image using Azure Image Builder #
 
 [Azure Image Builder](https://docs.microsoft.com/en-us/azure/virtual-machines/image-builder-overview) is an Azure service that allows you to create predefined images with the required settings and software that meets your corporate standards, all of this being done in an automated approach that guarantees consistency and allows you to version version your images while managing them as code.
 
@@ -29,7 +29,7 @@ The sample provides:
   - Image definition and gallery settings
 - A template used to configure the image, this file will:
   - Define the base image to use and VM profile, in this case it will use Ubuntu 18.04 on a Standard_D1_v2 VM.
-  - Include the customization script and the commands to run it. In this sample the script will install LAMP stack and Wordpress
+  - Include the customization script and the commands to run it. In this sample the script will install Wordpress
   - Image Gallery configuration
 
 ## Solution deployment variables
@@ -86,6 +86,14 @@ az vm create \
   --generate-ssh-keys \
   --nsg wordpressnsg
 ```
+
+Get the public IP address of the VM by running:
+
+```shell
+az vm list-ip-addresses -n wordpressvm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv
+```
+
+Access the IP address via a web browser and wordpress should be deployed.
 
 ## Additional resources
 

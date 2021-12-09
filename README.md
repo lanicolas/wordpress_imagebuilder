@@ -93,7 +93,7 @@ Get the public IP address of the VM by running:
 az vm list-ip-addresses -n wordpressvm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv
 ```
 
-Access the IP address via a web browser and wordpress should be deployed.
+Access the IP address via a web browser and Wordpress should be deployed.
 
 ## Additional resources
 
